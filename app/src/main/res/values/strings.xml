@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Moshey</string>
+    <string name="different_location_images">Different Location Images</string>
+    <string name="book_a_train">Book A Train</string>
+    <string name="my_tickets">My Tickets</string>
 </resources>
