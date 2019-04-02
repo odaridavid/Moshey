@@ -1,4 +1,6 @@
-package com.android.team.moshey.models;
+package com.android.team.moshey.models.entities;
+
+import com.android.team.moshey.models.ITicket;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -21,6 +23,12 @@ public final class MyTicket implements ITicket {
     @ColumnInfo(name = "to")
     private String to;
 
+    public MyTicket(long _id, String ticketId, String from, String to) {
+        this._id = _id;
+        this.ticketId = ticketId;
+        this.from = from;
+        this.to = to;
+    }
 
     public String getTicketId() {
         return ticketId;
