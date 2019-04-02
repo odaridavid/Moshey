@@ -15,3 +15,5 @@
 /captures
 .externalNativeBuild
 app/libs/
+google-services.json
+src/main/java/com/android/team/moshey/db/

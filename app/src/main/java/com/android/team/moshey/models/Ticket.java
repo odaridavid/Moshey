@@ -1,11 +1,17 @@
 package com.android.team.moshey.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Created By blackcoder
  * On 01/04/19
  **/
+
+@Entity(tableName = "my_tickets")
 public final class Ticket {
-    //    TODO Make Room entity
+
+    @PrimaryKey(autoGenerate = true)
     private long _id;
     private String ticketId;
     private String destinationPoint;

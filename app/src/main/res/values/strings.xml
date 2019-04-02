@@ -5,4 +5,9 @@
     <string name="my_tickets">My Tickets</string>
     <string name="book">Book</string>
     <string name="book_title">Book A Ticket</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="ticked_id">Ticked Id.</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="tickets_remaining">Tickets Remaining</string>
 </resources>
