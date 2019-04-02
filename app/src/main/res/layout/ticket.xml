@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ticket_list_recycler_margin"
         android:background="@android:color/white"
-        android:minHeight="200dp"
+        android:minHeight="120dp"
         app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,25 +62,10 @@
                 style="@style/Base.Widget.Moshey.TextView.Subtext"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_id_title"
                 tools:text="#3ER456" />
 
-            <TextView
-                android:id="@+id/text_view_ticket_departure_time_title"
-                style="@style/Base.Widget.Moshey.TextView.Title"
-                android:text="@string/departure_time"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_id" />
-
-            <TextView
-                android:id="@+id/spinner_ticket_departure_time"
-                style="@style/Base.Widget.Moshey.TextView.Subtext"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_departure_time_title"
-                tools:text="09-09-2019 12:34 PM EAT" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,8 +32,10 @@ dependencies {
     annotationProcessor androidx.room_compiler
     implementation squareup.retrofit2
     implementation bumptech.glide
+    implementation firebase.core
     annotationProcessor bumptech.glide_compiler
     testImplementation 'junit:junit:4.12'
     androidTestImplementation androidx.test_runner
     androidTestImplementation androidx.espresso_core
 }
+apply plugin: 'com.google.gms.google-services'

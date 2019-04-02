@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/ticket_list_recycler_margin"
         android:background="@android:color/white"
-        android:minHeight="200dp"
+        android:minHeight="150dp"
         app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,32 +51,12 @@
 
 
             <TextView
-                android:id="@+id/text_view_ticket_departure_time_title"
-                style="@style/Base.Widget.Moshey.TextView.Title"
-                android:text="@string/departure_time"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_to" />
-
-            <Spinner
-                android:id="@+id/spinner_ticket_departure_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_departure_time_title" />
-
-            <TextView
                 android:id="@+id/text_view_ticket_remaining_title"
                 style="@style/Base.Widget.Moshey.TextView.Title"
                 android:text="@string/tickets_remaining"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_ticket_departure_time" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view_to" />
 
             <TextView
                 android:id="@+id/text_view_ticket_remaining"
@@ -90,8 +70,8 @@
                 android:id="@+id/button_book_ticket"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:background="@color/colorAccent"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/moshey_button_style"
                 android:text="@string/book"
                 android:textColor="@android:color/black"
                 app:layout_constraintRight_toRightOf="parent"
