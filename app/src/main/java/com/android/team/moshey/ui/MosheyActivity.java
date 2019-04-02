@@ -18,14 +18,12 @@ public class MosheyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMosheyBinding vActivityMosheyBinding = DataBindingUtil.setContentView(this, R.layout.activity_moshey);
-        Toolbar supportToolbar = vActivityMosheyBinding.mosheyAppBar;
-        setSupportActionBar(supportToolbar);
+        setSupportActionBar(vActivityMosheyBinding.mosheyAppBar);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        switch (itemId) {
+        switch (item.getItemId()) {
             case R.id.action_book:
                 startActivity(new Intent(MosheyActivity.this, BookingActivity.class));
                 break;

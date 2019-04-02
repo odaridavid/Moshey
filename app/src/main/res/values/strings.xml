@@ -10,4 +10,5 @@
     <string name="ticked_id">Ticked Id.</string>
     <string name="departure_time">Departure Time</string>
     <string name="tickets_remaining">Tickets Remaining</string>
+    <string name="tickets_unavailable">No Tickets Available</string>
 </resources>

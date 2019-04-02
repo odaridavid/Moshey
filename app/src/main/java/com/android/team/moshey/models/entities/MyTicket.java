@@ -2,6 +2,7 @@ package com.android.team.moshey.models.entities;
 
 import com.android.team.moshey.models.ITicket;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -12,7 +13,7 @@ import androidx.room.PrimaryKey;
  **/
 
 @Entity(tableName = "my_tickets")
-public final class MyTicket implements ITicket {
+public class MyTicket implements ITicket {
 
     @PrimaryKey(autoGenerate = true)
     private long _id;
@@ -28,6 +29,14 @@ public final class MyTicket implements ITicket {
         this.ticketId = ticketId;
         this.from = from;
         this.to = to;
+    }
+
+    public long get_id() {
+        return _id;
+    }
+
+    public void set_id(long _id) {
+        this._id = _id;
     }
 
     public String getTicketId() {
@@ -59,6 +68,7 @@ public final class MyTicket implements ITicket {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "MyTicket{" +

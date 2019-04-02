@@ -19,6 +19,6 @@ public interface TicketsDao {
     @Query("SELECT * FROM my_tickets")
     List<MyTicket> getAllTickets();
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    void insertTicket();
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertTicket(MyTicket myTicket);
 }

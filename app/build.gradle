@@ -19,6 +19,10 @@ android {
     dataBinding {
         enabled true
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -29,7 +33,10 @@ dependencies {
     implementation androidx.constraint_layout
     implementation androidx.material_design
     implementation androidx.room
+    implementation androidx.lifecycle_extensions
+    implementation androidx.lifecycle_runtime
     annotationProcessor androidx.room_compiler
+    annotationProcessor androidx.lifecycle_compiler
     implementation squareup.retrofit2
     implementation bumptech.glide
     implementation firebase.core
