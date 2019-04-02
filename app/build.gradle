@@ -37,7 +37,6 @@ dependencies {
     implementation androidx.lifecycle_runtime
     annotationProcessor androidx.room_compiler
     annotationProcessor androidx.lifecycle_compiler
-    implementation squareup.retrofit2
     implementation bumptech.glide
     implementation firebase.core
     annotationProcessor bumptech.glide_compiler

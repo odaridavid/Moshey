@@ -21,9 +21,6 @@ ext {
             'lifecycle_compiler'  : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
             'lifecycle_runtime'   : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     ]
-    squareup = [
-            'retrofit2': 'com.squareup.retrofit2:retrofit:2.5.0'
-    ]
     bumptech = [
             'glide'         : 'com.github.bumptech.glide:glide:4.9.0',
             'glide_compiler': 'com.github.bumptech.glide:compiler:4.9.0'
