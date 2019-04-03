@@ -16,16 +16,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BookingActivity extends AppCompatActivity {
 
     private BookingViewModel mBookingViewModel;
+    private ActivityBookingBinding mBookingBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityBookingBinding vBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
-        Toolbar vToolbar = vBookingBinding.bookingAppBar;
+        mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
+        Toolbar vToolbar = mBookingBinding.bookingAppBar;
         vToolbar.setTitle(getString(R.string.book_title));
         setSupportActionBar(vToolbar);
         if (getSupportActionBar() != null) {
@@ -46,8 +49,11 @@ public class BookingActivity extends AppCompatActivity {
 
     private void bindUI(List<AvailableTicket> availableTickets) {
         if (!availableTickets.isEmpty()) {
+            RecyclerView vRecyclerView = mBookingBinding.availableTicketsRecycler;
+            vRecyclerView.setAdapter(new BookTicketAdapter(availableTickets));
+            vRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        } else
+            Toast.makeText(BookingActivity.this, getString(R.string.tickets_unavailable), Toast.LENGTH_SHORT).show();
 
-        }
-        Toast.makeText(BookingActivity.this, getString(R.string.tickets_unavailable), Toast.LENGTH_SHORT).show();
     }
 }

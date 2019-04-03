@@ -84,8 +84,8 @@ public class FirebaseDataSource {
                             if (task.isSuccessful()) {
                                 QuerySnapshot lQueryDocumentSnapshots = task.getResult();
                                 List<DocumentSnapshot> lDocuments = lQueryDocumentSnapshots.getDocuments();
-                                Log.d("Ticket 0:", lDocuments.get(0).toString());
                                 if (lDocuments.size() > 0) {
+                                    Log.d("Tickets:", String.valueOf(lDocuments.size()));
                                     for (DocumentSnapshot vDocumentSnapshot : lDocuments) {
                                         AvailableTicket vAvailableTicket = vDocumentSnapshot.toObject(AvailableTicket.class);
                                         ticketList.add(vAvailableTicket);
