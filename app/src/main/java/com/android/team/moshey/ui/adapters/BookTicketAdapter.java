@@ -1,4 +1,4 @@
-package com.android.team.moshey.ui;
+package com.android.team.moshey.ui.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public final class BookTicketAdapter extends RecyclerView.Adapter<BookTicketAdapter.BookTicketViewHolder> {
     private List<AvailableTicket> mAvailableTickets;
 
-    BookTicketAdapter(List<AvailableTicket> mAvailableTickets) {
+    public BookTicketAdapter(List<AvailableTicket> mAvailableTickets) {
         this.mAvailableTickets = mAvailableTickets;
     }
 

@@ -1,12 +1,12 @@
 package com.android.team.moshey.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.ui.adapters.BookTicketAdapter;
 import com.android.team.moshey.ui.viewmodels.BookingViewModel;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
 import com.android.team.moshey.utils.InjectorUtils;
@@ -49,11 +49,21 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private void bindUI(List<AvailableTicket> availableTickets) {
-        if (!availableTickets.isEmpty()) {
-            RecyclerView vRecyclerView = mBookingBinding.availableTicketsRecycler;
-            vRecyclerView.setAdapter(new BookTicketAdapter(availableTickets));
-            vRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        } else
+        if (availableTickets.isEmpty())
             Toast.makeText(BookingActivity.this, getString(R.string.tickets_unavailable), Toast.LENGTH_SHORT).show();
+        RecyclerView vRecyclerView = mBookingBinding.availableTicketsRecycler;
+        vRecyclerView.setAdapter(new BookTicketAdapter(availableTickets));
+        vRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        vRecyclerView.setHasFixedSize(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }
