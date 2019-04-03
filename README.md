@@ -1,5 +1,8 @@
 # Moshey
-A train booking app,using Androidx,Databinding,MVVM architecture and Android Jetpack Components.
+A train booking app where users can get to book s ticket based on destination points and make payments for tickets
+The Project has been built using Androidx,Databinding,MVVM architecture,Android Jetpack Components and Firebase.
+
+Technologies yet to be added include ;Mpesa Api to mimic payment model
 
 ## Prerequisites
 
