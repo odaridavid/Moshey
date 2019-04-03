@@ -23,10 +23,10 @@ in ```app``` directory
 
 ## Screenshots
 
-<details>
+ <details>
 
- <summary> Mobile </summary>
--
+    <summary> Mobile </summary>
+
 | [![Book a Ticket](https://github.com/Davidodari/Makta/blob/master/screenshots/Book.png)]()|
 |:---:|
 | |
