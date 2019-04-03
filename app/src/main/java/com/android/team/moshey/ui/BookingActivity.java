@@ -1,6 +1,7 @@
 package com.android.team.moshey.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.team.moshey.R;
@@ -54,6 +55,5 @@ public class BookingActivity extends AppCompatActivity {
             vRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         } else
             Toast.makeText(BookingActivity.this, getString(R.string.tickets_unavailable), Toast.LENGTH_SHORT).show();
-
     }
 }

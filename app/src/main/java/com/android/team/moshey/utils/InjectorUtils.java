@@ -2,7 +2,7 @@ package com.android.team.moshey.utils;
 
 import android.content.Context;
 
-import com.android.team.moshey.models.FirebaseDataSource;
+import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.models.MosheyRepository;
 import com.android.team.moshey.models.db.TicketsDatabase;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;

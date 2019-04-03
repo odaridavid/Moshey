@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android.team.moshey.models.db.dao.AvailableTicketsDao;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.utils.ThreadAppExecutors;
 
 import java.util.List;
@@ -30,7 +31,6 @@ public class MosheyRepository {
             @Override
             public void run() {
                 mAvailableTicketsDao.saveAvailableTickets(availableTickets);
-                Log.d("Available Tickets", availableTickets.toString());
             }
         }));
     }

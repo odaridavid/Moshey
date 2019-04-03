@@ -17,7 +17,7 @@ import static com.android.team.moshey.utils.ConstantUtils.TICKETS_DATABASE_LABEL
  * Created By blackcoder
  * On 02/04/19
  **/
-@Database(entities = {MyTicket.class, AvailableTicket.class}, version = 1, exportSchema = false)
+@Database(entities = {MyTicket.class, AvailableTicket.class}, version = 2, exportSchema = false)
 public abstract class TicketsDatabase extends RoomDatabase {
     public abstract MyTicketsDao mTicketsDao();
 

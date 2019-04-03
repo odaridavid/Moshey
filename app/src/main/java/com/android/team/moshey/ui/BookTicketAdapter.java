@@ -33,10 +33,11 @@ public final class BookTicketAdapter extends RecyclerView.Adapter<BookTicketAdap
 
     @Override
     public void onBindViewHolder(@NonNull BookTicketViewHolder holder, int position) {
-        for (AvailableTicket vAvailableTicket : mAvailableTickets) {
-            holder.tvTicketsLeft.setText(String.valueOf(vAvailableTicket.getLeft()));
-            holder.tvTo.setText(vAvailableTicket.getTo());
-            holder.tvFrom.setText(vAvailableTicket.getFrom());
+        if (mAvailableTickets != null) {
+            AvailableTicket ticket = mAvailableTickets.get(position);
+            holder.tvFrom.setText(ticket.getFrom());
+            holder.tvTo.setText(ticket.getTo());
+            holder.tvTicketsLeft.setText(String.valueOf(ticket.getLeft()));
         }
     }
 

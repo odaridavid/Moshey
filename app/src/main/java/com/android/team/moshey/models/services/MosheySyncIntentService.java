@@ -3,7 +3,7 @@ package com.android.team.moshey.models.services;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.android.team.moshey.models.FirebaseDataSource;
+import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.utils.InjectorUtils;
 
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.android.team.moshey.models;
+package com.android.team.moshey.models.network;
 
 import android.content.Context;
 import android.content.Intent;
@@ -50,7 +50,7 @@ public class FirebaseDataSource {
         mFirebaseFirestoreDb = FirebaseFirestore.getInstance();
     }
 
-    LiveData<List<AvailableTicket>> getAvailableTickets() {
+    public LiveData<List<AvailableTicket>> getAvailableTickets() {
         return mAvailableTickets;
     }
 
@@ -66,7 +66,7 @@ public class FirebaseDataSource {
     /**
      * Starts Intent Service to update data
      */
-    void startFetchForAvailableTickets() {
+    public void startFetchForAvailableTickets() {
         Intent intentToFetch = new Intent(mContext, MosheySyncIntentService.class);
         mContext.startService(intentToFetch);
     }

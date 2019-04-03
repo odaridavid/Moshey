@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
  * Created By blackcoder
  * On 02/04/19
  **/
-@Entity(tableName = "available_tickets")
+@Entity(tableName = "available_tickets", indices = {@Index(value = {"from", "to"}, unique = true)})
 public class AvailableTicket implements ITicket {
     @PrimaryKey(autoGenerate = true)
     private long _id;
