@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android.team.moshey.models.db.dao.AvailableTicketsDao;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.utils.ThreadAppExecutors;
 
 import java.util.List;
 
@@ -20,20 +21,24 @@ public class MosheyRepository {
     private final AvailableTicketsDao mAvailableTicketsDao;
     private boolean mInitialized = false;
 
-    private MosheyRepository(FirebaseDataSource firebaseDataSource, AvailableTicketsDao availableTicketsDao) {
+
+    private MosheyRepository(FirebaseDataSource firebaseDataSource, AvailableTicketsDao availableTicketsDao, ThreadAppExecutors threadAppExecutors) {
         mFirebaseDataSource = firebaseDataSource;
         mAvailableTicketsDao = availableTicketsDao;
         LiveData<List<AvailableTicket>> vAvailableTickets = mFirebaseDataSource.getAvailableTickets();
-        vAvailableTickets.observeForever(availableTickets -> {
-            mAvailableTicketsDao.saveAvailableTickets(availableTickets);
-            Log.d("Available Tickets", availableTickets.toString());
-        });
+        vAvailableTickets.observeForever(availableTickets -> threadAppExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mAvailableTicketsDao.saveAvailableTickets(availableTickets);
+                Log.d("Available Tickets", availableTickets.toString());
+            }
+        }));
     }
 
-    public synchronized static MosheyRepository getInstance(AvailableTicketsDao availableTicketsDao, FirebaseDataSource firebaseDataSource) {
+    public synchronized static MosheyRepository getInstance(AvailableTicketsDao availableTicketsDao, FirebaseDataSource firebaseDataSource, ThreadAppExecutors threadAppExecutors) {
         if (sMosheyRepository == null) {
             synchronized (LOCK) {
-                sMosheyRepository = new MosheyRepository(firebaseDataSource, availableTicketsDao);
+                sMosheyRepository = new MosheyRepository(firebaseDataSource, availableTicketsDao, threadAppExecutors);
             }
         }
         return sMosheyRepository;

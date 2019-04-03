@@ -7,6 +7,7 @@ import android.util.Log;
 import com.android.team.moshey.models.entities.AvailableTicket;
 import com.android.team.moshey.models.services.MosheyFirebaseService;
 import com.android.team.moshey.models.services.MosheySyncIntentService;
+import com.android.team.moshey.utils.ThreadAppExecutors;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -40,8 +41,10 @@ public class FirebaseDataSource {
     private static final int SYNC_INTERVAL_HOURS = 6;
     private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS);
     private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 6;
+    private ThreadAppExecutors mThreadAppExecutors;
 
-    private FirebaseDataSource(Context context) {
+    private FirebaseDataSource(Context context, ThreadAppExecutors executors) {
+        mThreadAppExecutors = executors;
         mContext = context;
         mAvailableTickets = new MutableLiveData<>();
         mFirebaseFirestoreDb = FirebaseFirestore.getInstance();
@@ -51,10 +54,10 @@ public class FirebaseDataSource {
         return mAvailableTickets;
     }
 
-    public synchronized static FirebaseDataSource getInstance(Context context) {
+    public synchronized static FirebaseDataSource getInstance(Context context, ThreadAppExecutors executors) {
         if (sFirebaseDataSource == null) {
             synchronized (LOCK) {
-                sFirebaseDataSource = new FirebaseDataSource(context.getApplicationContext());
+                sFirebaseDataSource = new FirebaseDataSource(context.getApplicationContext(), executors);
             }
         }
         return sFirebaseDataSource;
@@ -73,24 +76,25 @@ public class FirebaseDataSource {
      */
     public void fetchTickets() {
         List<AvailableTicket> ticketList = new ArrayList<>();
-        mFirebaseFirestoreDb
-                .collection(COLLECTION_TICKETS)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot lQueryDocumentSnapshots = task.getResult();
-                        List<DocumentSnapshot> lDocuments = lQueryDocumentSnapshots.getDocuments();
-                        Log.d("Ticket 0:", lDocuments.get(0).toString());
-                        if (lDocuments.size() > 0) {
-                            for (DocumentSnapshot vDocumentSnapshot : lDocuments) {
-                                AvailableTicket vAvailableTicket = vDocumentSnapshot.toObject(AvailableTicket.class);
-                                ticketList.add(vAvailableTicket);
-                            }
-                            mAvailableTickets.postValue(ticketList);
-                        }
-                    } else Log.d("Firebase Ticket Fetch ", "Failure");
-                })
-                .addOnFailureListener(e -> Log.d("Firebase Ticket Fetch ", e.getMessage()));
+        mThreadAppExecutors.networkIO().execute(() ->
+                mFirebaseFirestoreDb
+                        .collection(COLLECTION_TICKETS)
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                QuerySnapshot lQueryDocumentSnapshots = task.getResult();
+                                List<DocumentSnapshot> lDocuments = lQueryDocumentSnapshots.getDocuments();
+                                Log.d("Ticket 0:", lDocuments.get(0).toString());
+                                if (lDocuments.size() > 0) {
+                                    for (DocumentSnapshot vDocumentSnapshot : lDocuments) {
+                                        AvailableTicket vAvailableTicket = vDocumentSnapshot.toObject(AvailableTicket.class);
+                                        ticketList.add(vAvailableTicket);
+                                    }
+                                    mAvailableTickets.postValue(ticketList);
+                                }
+                            } else Log.d("Firebase Ticket Fetch ", "Failure");
+                        })
+                        .addOnFailureListener(e -> Log.d("Firebase Ticket Fetch ", e.getMessage())));
     }
 
     public void scheduleRecurringFetchTicketsSync() {

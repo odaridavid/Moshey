@@ -19,13 +19,15 @@ public class InjectorUtils {
      */
     private static MosheyRepository provideRepository(Context context) {
         TicketsDatabase database = TicketsDatabase.getInstance(context.getApplicationContext());
+        ThreadAppExecutors executors = ThreadAppExecutors.getInstance();
         FirebaseDataSource vFirebaseDataSource =
-                FirebaseDataSource.getInstance(context.getApplicationContext());
-        return MosheyRepository.getInstance(database.mAvailableTicketsDao(), vFirebaseDataSource);
+                FirebaseDataSource.getInstance(context.getApplicationContext(), executors);
+        return MosheyRepository.getInstance(database.mAvailableTicketsDao(), vFirebaseDataSource, executors);
     }
 
     public static FirebaseDataSource provideNetworkDataSource(Context context) {
-        return FirebaseDataSource.getInstance(context.getApplicationContext());
+        ThreadAppExecutors executors = ThreadAppExecutors.getInstance();
+        return FirebaseDataSource.getInstance(context.getApplicationContext(), executors);
     }
 
     /**

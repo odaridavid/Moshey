@@ -35,7 +35,6 @@ public abstract class TicketsDatabase extends RoomDatabase {
                                     context.getApplicationContext(),
                                     TicketsDatabase.class,
                                     TICKETS_DATABASE_LABEL)
-                            .setTransactionExecutor(new ThreadExecutor())
                             .fallbackToDestructiveMigration()
                             .build();
                 }
