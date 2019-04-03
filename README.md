@@ -21,3 +21,15 @@ in ```app``` directory
 
 [Google Codelabs](https://codelabs.developers.google.com/codelabs/build-app-with-arch-components/index.html)
 
+## Screenshots
+
+<details>
+
+ <summary> Mobile </summary>
+-
+| [![Book a Ticket](https://github.com/Davidodari/Makta/blob/master/screenshots/Book.png)]()|
+|:---:|
+| |
+
+</details>
+

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -60,9 +59,9 @@
             <TextView
                 android:id="@+id/text_view_ticket_id"
                 style="@style/Moshey.Subtext"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_id_title"
                 tools:text="#3ER456" />
 
