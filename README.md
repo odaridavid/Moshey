@@ -25,11 +25,11 @@ in ```app``` directory
 
  <details>
 
-    <summary> Mobile </summary>
+   <summary> Mobile </summary>
 
-| [![Book a Ticket](https://github.com/Davidodari/Makta/blob/master/screenshots/Book.png)]()|
+| [![Book a Ticket](https://github.com/Davidodari/Moshey/blob/master/screenshots/Book.png)]()|
 |:---:|
 | |
 
-</details>
+ </details>
 
