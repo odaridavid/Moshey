@@ -35,10 +35,13 @@ dependencies {
     implementation androidx.room
     implementation androidx.lifecycle_extensions
     implementation androidx.lifecycle_runtime
-    annotationProcessor androidx.room_compiler
-    annotationProcessor androidx.lifecycle_compiler
     implementation bumptech.glide
     implementation firebase.core
+    implementation firebase.firestoreDb
+    implementation firebase.firestoreUi
+    implementation firebase.job_dispatcher
+    annotationProcessor androidx.room_compiler
+    annotationProcessor androidx.lifecycle_compiler
     annotationProcessor bumptech.glide_compiler
     testImplementation 'junit:junit:4.12'
     androidTestImplementation androidx.test_runner

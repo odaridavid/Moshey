@@ -1,4 +1,4 @@
-package com.android.team.moshey.models;
+package com.android.team.moshey.models.entities;
 
 /**
  * Created By blackcoder

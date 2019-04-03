@@ -17,5 +17,7 @@ in ```app``` directory
 - [Android Jetpack](https://developer.android.com/jetpack) 
 - [Glide](https://bumptech.github.io/glide/)
 
+## Inspired By
 
+[Google Codelabs](https://codelabs.developers.google.com/codelabs/build-app-with-arch-components/index.html)
 

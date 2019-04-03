@@ -1,4 +1,4 @@
-package com.android.team.moshey.models.db;
+package com.android.team.moshey.models.db.dao;
 
 import com.android.team.moshey.models.entities.MyTicket;
 
@@ -14,7 +14,7 @@ import androidx.room.Query;
  * On 02/04/19
  **/
 @Dao
-public interface TicketsDao {
+public interface MyTicketsDao {
 
     @Query("SELECT * FROM my_tickets")
     List<MyTicket> getAllTickets();

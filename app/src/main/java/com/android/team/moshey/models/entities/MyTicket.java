@@ -1,7 +1,5 @@
 package com.android.team.moshey.models.entities;
 
-import com.android.team.moshey.models.ITicket;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

@@ -6,7 +6,9 @@ import android.widget.Toast;
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
 import com.android.team.moshey.models.entities.AvailableTicket;
-import com.android.team.moshey.viewmodels.BookingViewModel;
+import com.android.team.moshey.ui.viewmodels.BookingViewModel;
+import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
+import com.android.team.moshey.utils.InjectorUtils;
 
 import java.util.List;
 
@@ -30,7 +32,8 @@ public class BookingActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         }
-        mBookingViewModel = ViewModelProviders.of(this).get(BookingViewModel.class);
+        BookingViewModelFactory factory = InjectorUtils.provideDetailViewModelFactory(this.getApplicationContext());
+        mBookingViewModel = ViewModelProviders.of(this, factory).get(BookingViewModel.class);
         observeTickets();
     }
 
