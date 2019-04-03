@@ -3,6 +3,7 @@ package com.android.team.moshey.models.entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -21,6 +22,11 @@ public class MyTicket implements ITicket {
     private String from;
     @ColumnInfo(name = "to")
     private String to;
+
+    @Ignore
+    public MyTicket() {
+
+    }
 
     public MyTicket(long _id, String ticketId, String from, String to) {
         this._id = _id;
