@@ -1,7 +1,5 @@
 package com.android.team.moshey.models;
 
-import android.util.Log;
-
 import com.android.team.moshey.models.db.dao.AvailableTicketsDao;
 import com.android.team.moshey.models.entities.AvailableTicket;
 import com.android.team.moshey.models.network.FirebaseDataSource;
@@ -21,11 +19,12 @@ public class MosheyRepository {
     private static MosheyRepository sMosheyRepository;
     private final AvailableTicketsDao mAvailableTicketsDao;
     private boolean mInitialized = false;
-
+    private ThreadAppExecutors mThreadAppExecutors;
 
     private MosheyRepository(FirebaseDataSource firebaseDataSource, AvailableTicketsDao availableTicketsDao, ThreadAppExecutors threadAppExecutors) {
         mFirebaseDataSource = firebaseDataSource;
         mAvailableTicketsDao = availableTicketsDao;
+        mThreadAppExecutors = threadAppExecutors;
         LiveData<List<AvailableTicket>> vAvailableTickets = mFirebaseDataSource.getAvailableTickets();
         vAvailableTickets.observeForever(availableTickets -> threadAppExecutors.diskIO().execute(new Runnable() {
             @Override
@@ -56,12 +55,25 @@ public class MosheyRepository {
         // performed, we have nothing to do in this method.
         if (mInitialized) return;
         mInitialized = true;
-        startFetchTickets();
+        mFirebaseDataSource.scheduleRecurringFetchTicketsSync();
+        mThreadAppExecutors.diskIO().execute(() -> {
+            if (isFetchNeeded()) startFetchTickets();
+        });
     }
 
     public LiveData<List<AvailableTicket>> getTickets() {
         initializeData();
         return mAvailableTicketsDao.getAllAvailableTickets();
+    }
+
+    /**
+     * Check Local cache before loading data
+     *
+     * @return Whether a fetch is needed or not
+     */
+    private boolean isFetchNeeded() {
+//        TODO Use different criteria
+        return !(mAvailableTicketsDao.ticketAvailableCount() == 4);
     }
 
 }

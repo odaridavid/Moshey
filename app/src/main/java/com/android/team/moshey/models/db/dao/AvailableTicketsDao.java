@@ -26,6 +26,14 @@ public interface AvailableTicketsDao {
     LiveData<List<AvailableTicket>> getAllAvailableTickets();
 
     /**
+     * Get saved tickets count
+     *
+     * @return
+     */
+    @Query("SELECT COUNT(_id) FROM available_tickets")
+    int ticketAvailableCount();
+
+    /**
      * Saves Loaded Tickets to the database
      *
      * @param availableTickets Tickets to insert

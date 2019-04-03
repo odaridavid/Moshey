@@ -38,9 +38,9 @@ public class FirebaseDataSource {
     private static final Object LOCK = new Object();
     private static FirebaseDataSource sFirebaseDataSource;
     private FirebaseFirestore mFirebaseFirestoreDb;
-    private static final int SYNC_INTERVAL_HOURS = 6;
+    private static final int SYNC_INTERVAL_HOURS = 1;
     private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS);
-    private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 6;
+    private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 2;
     private ThreadAppExecutors mThreadAppExecutors;
 
     private FirebaseDataSource(Context context, ThreadAppExecutors executors) {
