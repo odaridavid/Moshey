@@ -30,7 +30,7 @@ in ```app``` directory
 
    <summary> Mobile </summary>
 
-| [![Book a Ticket](https://github.com/Davidodari/Moshey/blob/ft-book-ticket-165036044/screenshots/Book.png)]()|
+| [![Book a Ticket](https://github.com/Davidodari/Moshey/blob/master/screenshots/book.png)]()|
 |:---:|
 | |
 
