@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Moshey</string>
+    <string name="different_location_images">Different Location Images</string>
+    <string name="book_a_train">Book A Train</string>
+    <string name="my_tickets">My Tickets</string>
+    <string name="book">Book</string>
+    <string name="book_title">Book A Ticket</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="ticked_id">Ticked Id.</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="tickets_remaining">Tickets Remaining</string>
+    <string name="tickets_unavailable">No Tickets Available</string>
+    <string name="no_new_tickets">No New Tickets</string>
 </resources>
