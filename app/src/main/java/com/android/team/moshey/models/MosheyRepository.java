@@ -4,6 +4,7 @@ import com.android.team.moshey.models.db.dao.AvailableTicketsDao;
 import com.android.team.moshey.models.entities.AvailableTicket;
 import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.utils.ThreadAppExecutors;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.List;
 
@@ -64,6 +65,10 @@ public class MosheyRepository {
     public LiveData<List<AvailableTicket>> getTickets() {
         initializeData();
         return mAvailableTicketsDao.getAllAvailableTickets();
+    }
+
+    public FirestoreRecyclerOptions<AvailableTicket> getAvailableTicketsRemote() {
+        return mFirebaseDataSource.availableTicketQuery();
     }
 
     /**

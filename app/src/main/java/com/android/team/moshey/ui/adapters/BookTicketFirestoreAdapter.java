@@ -1,8 +1,10 @@
 package com.android.team.moshey.ui.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.team.moshey.R;
@@ -18,19 +20,22 @@ import androidx.recyclerview.widget.RecyclerView;
  * On 03/04/19
  **/
 public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<AvailableTicket, BookTicketViewHolder> {
+    private IFirestoreAdapterCallback mCallback;
+
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public BookTicketFirestoreAdapter(@NonNull FirestoreRecyclerOptions<AvailableTicket> options) {
+    public BookTicketFirestoreAdapter(@NonNull FirestoreRecyclerOptions<AvailableTicket> options, IFirestoreAdapterCallback callback) {
         super(options);
-//    TODO  Change List to  Firestore Options
+        mCallback = callback;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull BookTicketViewHolder bookTicketViewHolder, int i, @NonNull AvailableTicket availableTicket) {
+        Log.d("Adapter:", availableTicket.toString());
         bookTicketViewHolder.tvFrom.setText(availableTicket.getFrom());
         bookTicketViewHolder.tvTo.setText(availableTicket.getTo());
         bookTicketViewHolder.tvTicketsLeft.setText(String.valueOf(availableTicket.getLeft()));
@@ -46,7 +51,8 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
     @Override
     public void onDataChanged() {
         super.onDataChanged();
-//        TODO implement callback
+        mCallback.onAdapterDataChanged(super.getItemCount());
+        notifyDataSetChanged();
     }
 }
 
@@ -59,6 +65,7 @@ class BookTicketViewHolder extends RecyclerView.ViewHolder {
         tvFrom = itemView.findViewById(R.id.text_view_from);
         tvTo = itemView.findViewById(R.id.text_view_to);
         tvTicketsLeft = itemView.findViewById(R.id.text_view_ticket_remaining);
+        Button vBtnBookTicket = itemView.findViewById(R.id.button_book_ticket);
     }
 }
 

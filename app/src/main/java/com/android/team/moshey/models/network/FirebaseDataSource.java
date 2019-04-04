@@ -14,8 +14,10 @@ import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.Trigger;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -95,6 +97,13 @@ public class FirebaseDataSource {
                             } else Log.d("Firebase Ticket Fetch ", "Failure");
                         })
                         .addOnFailureListener(e -> Log.d("Firebase Ticket Fetch ", e.getMessage())));
+    }
+
+    public FirestoreRecyclerOptions<AvailableTicket> availableTicketQuery() {
+        Query lQuery = mFirebaseFirestoreDb.collection(COLLECTION_TICKETS);
+        return new FirestoreRecyclerOptions.Builder<AvailableTicket>()
+                .setQuery(lQuery, AvailableTicket.class)
+                .build();
     }
 
     public void scheduleRecurringFetchTicketsSync() {

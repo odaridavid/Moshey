@@ -2,6 +2,7 @@ package com.android.team.moshey.ui.viewmodels;
 
 import com.android.team.moshey.models.MosheyRepository;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.List;
 
@@ -16,9 +17,11 @@ public class BookingViewModel extends ViewModel {
 
     //    Data in Booking View,lifecycle aware
     private final LiveData<List<AvailableTicket>> mAvailableTickets;
+    private FirestoreRecyclerOptions<AvailableTicket> mFirestoreRecyclerOptions;
 
     BookingViewModel(MosheyRepository mosheyRepository) {
         mAvailableTickets = mosheyRepository.getTickets();
+        mFirestoreRecyclerOptions = mosheyRepository.getAvailableTicketsRemote();
     }
 
     /**
@@ -28,5 +31,12 @@ public class BookingViewModel extends ViewModel {
      */
     public LiveData<List<AvailableTicket>> getAvailableTickets() {
         return mAvailableTickets;
+    }
+
+    /**
+     * @return {@link FirestoreRecyclerOptions<AvailableTicket>} Firestore Query Object to be used by adapter to get realtime events
+     */
+    public FirestoreRecyclerOptions<AvailableTicket> getFirestoreRecyclerOptions() {
+        return mFirestoreRecyclerOptions;
     }
 }
