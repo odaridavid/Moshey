@@ -59,14 +59,14 @@ public class MosheyRepository {
      * @param myTicket object with details pertaining the ticket
      */
     public void bookTicket(MyTicket myTicket) {
+        //      TODO  Make payment using Mpesa Api
         mThreadAppExecutors.diskIO().execute(() -> {
             mMyTicketsDao.insertTicket(myTicket);
             Log.d("Booking", "Ticket Booked");
         });
         mThreadAppExecutors.networkIO().execute(() -> {
             mFirebaseDataSource.bookTicket(myTicket);
-            mFirebaseDataSource.registerTicket(myTicket.getTicketId());
-//          TODO  Make payment
+            mFirebaseDataSource.registerTicket(myTicket);
         });
     }
 }

@@ -11,6 +11,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.android.team.moshey.utils.ConstantUtils.COLLECTION_BOUGHT;
 import static com.android.team.moshey.utils.ConstantUtils.COLLECTION_TICKETS;
 import static com.android.team.moshey.utils.ConstantUtils.FIELD_VALUE_REMAINING_TICKETS;
 
@@ -74,9 +78,21 @@ public class FirebaseDataSource {
     /**
      * Registers Ticket to sold tickets by saving ticket id
      *
-     * @param ticketId Unique Ticket Id
+     * @param myTicket Bought Ticket
      */
-    public void registerTicket(String ticketId) {
-            //TODO Add bought tickets
+    public void registerTicket(MyTicket myTicket) {
+        Map<String, String> ticketPayload = new HashMap<String, String>() {
+            {
+                put("ticket_id", myTicket.getTicketId());
+            }
+        };
+        mFirebaseFirestoreDb
+                .collection(COLLECTION_BOUGHT)
+                .document(myTicket.getFrom().concat("-").concat(myTicket.getTo()))
+                .collection(COLLECTION_TICKETS)
+                .document(myTicket.getTicketId())
+                .set(ticketPayload)
+                .addOnSuccessListener(aVoid -> Log.d("Ticket", "Bought Successfully"))
+                .addOnFailureListener(e -> Log.d("Ticket", e.getMessage()));
     }
 }

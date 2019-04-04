@@ -9,6 +9,7 @@ import java.util.Random;
 public final class ConstantUtils {
     public static final String TICKETS_DATABASE_LABEL = "tickets";
     public static final String COLLECTION_TICKETS = "tickets";
+    public static final String COLLECTION_BOUGHT = "bought";
     public static final String FIELD_VALUE_REMAINING_TICKETS = "left";
 
     private static final String ALLOWED_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
