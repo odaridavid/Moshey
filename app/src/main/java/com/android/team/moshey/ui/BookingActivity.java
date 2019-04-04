@@ -1,7 +1,6 @@
 package com.android.team.moshey.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.team.moshey.R;
@@ -40,17 +39,17 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
         BookingViewModelFactory factory = InjectorUtils.provideDetailViewModelFactory(this.getApplicationContext());
         mBookingViewModel = ViewModelProviders.of(this, factory).get(BookingViewModel.class);
 //        observeTickets();
-        bindUI();
+        setupRecyclerView();
     }
 
 //    public void observeTickets() {
 //        mBookingViewModel.getAvailableTickets().observe(this, availableTickets -> {
 //            if (availableTickets != null)
-//                bindUI(availableTickets);
+//                setupRecyclerView(availableTickets);
 //        });
 //    }
 
-    private void bindUI() {
+    private void setupRecyclerView() {
         mBookTicketFirestoreAdapter = new BookTicketFirestoreAdapter(mBookingViewModel.getFirestoreRecyclerOptions(), this);
         mRecyclerView = mBookingBinding.availableTicketsRecycler;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,9 +72,8 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
 
     @Override
     public void onAdapterDataChanged(int itemCount) {
-        Log.d("Items", String.valueOf(itemCount));
         if (!(itemCount > 0)) {
-            Toast.makeText(BookingActivity.this, "No New Tickets", Toast.LENGTH_LONG).show();
+            Toast.makeText(BookingActivity.this, getString(R.string.no_new_tickets), Toast.LENGTH_LONG).show();
         }
         mRecyclerView.setAdapter(mBookTicketFirestoreAdapter);
     }

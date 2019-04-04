@@ -1,5 +1,6 @@
 package com.android.team.moshey.ui.adapters;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,12 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
         bookTicketViewHolder.tvFrom.setText(availableTicket.getFrom());
         bookTicketViewHolder.tvTo.setText(availableTicket.getTo());
         bookTicketViewHolder.tvTicketsLeft.setText(String.valueOf(availableTicket.getLeft()));
+        if (!(availableTicket.getLeft() > 0)) {
+            bookTicketViewHolder.mBtnBookTicket.setEnabled(false);
+            Context vContext = bookTicketViewHolder.itemView.getContext();
+            int disabledColor = vContext.getResources().getColor(R.color.mtrl_on_primary_disabled);
+            bookTicketViewHolder.mBtnBookTicket.setBackgroundColor(disabledColor);
+        }
     }
 
     @NonNull
@@ -58,14 +65,15 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
 
 class BookTicketViewHolder extends RecyclerView.ViewHolder {
 
-    TextView tvFrom, tvTo, tvTicketsLeft;
+    final TextView tvFrom, tvTo, tvTicketsLeft;
+    final Button mBtnBookTicket;
 
     BookTicketViewHolder(@NonNull View itemView) {
         super(itemView);
         tvFrom = itemView.findViewById(R.id.text_view_from);
         tvTo = itemView.findViewById(R.id.text_view_to);
         tvTicketsLeft = itemView.findViewById(R.id.text_view_ticket_remaining);
-        Button vBtnBookTicket = itemView.findViewById(R.id.button_book_ticket);
+        mBtnBookTicket = itemView.findViewById(R.id.button_book_ticket);
     }
 }
 

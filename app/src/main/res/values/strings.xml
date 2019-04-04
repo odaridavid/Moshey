@@ -11,4 +11,5 @@
     <string name="departure_time">Departure Time</string>
     <string name="tickets_remaining">Tickets Remaining</string>
     <string name="tickets_unavailable">No Tickets Available</string>
+    <string name="no_new_tickets">No New Tickets</string>
 </resources>
