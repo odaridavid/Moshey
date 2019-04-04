@@ -16,23 +16,24 @@ import androidx.lifecycle.ViewModel;
  **/
 public class BookingViewModel extends ViewModel {
 
-    //    Data in Booking View,lifecycle aware
-    private final LiveData<List<AvailableTicket>> mAvailableTickets;
+//    private final LiveData<List<MyTicket>> mMyTickets;
     private FirestoreRecyclerOptions<AvailableTicket> mFirestoreRecyclerOptions;
+    private MosheyRepository mMosheyRepository;
 
     BookingViewModel(MosheyRepository mosheyRepository) {
-        mAvailableTickets = mosheyRepository.getTickets();
+//        mMyTickets = mosheyRepository.getTickets();
         mFirestoreRecyclerOptions = mosheyRepository.getAvailableTicketsRemote();
+        mMosheyRepository = mosheyRepository;
     }
 
     /**
-     * Loads data from available tickets table
+     * Loads data from my tickets table
      *
      * @return {@link LiveData} list of observable tickets
      */
-    public LiveData<List<AvailableTicket>> getAvailableTickets() {
-        return mAvailableTickets;
-    }
+//    public LiveData<List<MyTicket>> getMyTickets() {
+//        return mMyTickets;
+//    }
 
     /**
      * @return {@link FirestoreRecyclerOptions<AvailableTicket>} Firestore Query Object to be used by adapter to get realtime events
@@ -41,9 +42,12 @@ public class BookingViewModel extends ViewModel {
         return mFirestoreRecyclerOptions;
     }
 
+    /**
+     * Pass Ticket to Repository to be added to database
+     *
+     * @param myTicket ticket booked by user
+     */
     public void bookTicket(MyTicket myTicket) {
-        //                TODO Make Payments
-//                TODO Decrement from firestore
-
+        mMosheyRepository.bookTicket(myTicket);
     }
 }

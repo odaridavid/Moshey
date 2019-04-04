@@ -1,7 +1,10 @@
 package com.android.team.moshey.models;
 
-import com.android.team.moshey.models.db.dao.AvailableTicketsDao;
+import android.util.Log;
+
+import com.android.team.moshey.models.db.dao.MyTicketsDao;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.models.entities.MyTicket;
 import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.utils.ThreadAppExecutors;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -18,53 +21,31 @@ public class MosheyRepository {
     private FirebaseDataSource mFirebaseDataSource;
     private static final Object LOCK = new Object();
     private static MosheyRepository sMosheyRepository;
-    private final AvailableTicketsDao mAvailableTicketsDao;
-    private boolean mInitialized = false;
+    private final MyTicketsDao mMyTicketsDao;
     private ThreadAppExecutors mThreadAppExecutors;
 
-    private MosheyRepository(FirebaseDataSource firebaseDataSource, AvailableTicketsDao availableTicketsDao, ThreadAppExecutors threadAppExecutors) {
+    private MosheyRepository(FirebaseDataSource firebaseDataSource, MyTicketsDao myTicketsDao, ThreadAppExecutors threadAppExecutors) {
         mFirebaseDataSource = firebaseDataSource;
-        mAvailableTicketsDao = availableTicketsDao;
+        mMyTicketsDao = myTicketsDao;
         mThreadAppExecutors = threadAppExecutors;
-        LiveData<List<AvailableTicket>> vAvailableTickets = mFirebaseDataSource.getAvailableTickets();
-        vAvailableTickets.observeForever(availableTickets -> threadAppExecutors.diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                mAvailableTicketsDao.saveAvailableTickets(availableTickets);
-            }
-        }));
     }
 
-    public synchronized static MosheyRepository getInstance(AvailableTicketsDao availableTicketsDao, FirebaseDataSource firebaseDataSource, ThreadAppExecutors threadAppExecutors) {
+    public synchronized static MosheyRepository getInstance(MyTicketsDao myTicketsDao, FirebaseDataSource firebaseDataSource, ThreadAppExecutors threadAppExecutors) {
         if (sMosheyRepository == null) {
             synchronized (LOCK) {
-                sMosheyRepository = new MosheyRepository(firebaseDataSource, availableTicketsDao, threadAppExecutors);
+                sMosheyRepository = new MosheyRepository(firebaseDataSource, myTicketsDao, threadAppExecutors);
             }
         }
         return sMosheyRepository;
     }
 
     /**
-     * Initialise Fetch Service from firebase
+     * Gets a list of all booked tickets
+     *
+     * @return {@link LiveData} Observable List of tickets
      */
-    private void startFetchTickets() {
-        mFirebaseDataSource.startFetchForAvailableTickets();
-    }
-
-    private synchronized void initializeData() {
-        // Only perform initialization once per app lifetime. If initialization has already been
-        // performed, we have nothing to do in this method.
-        if (mInitialized) return;
-        mInitialized = true;
-        mFirebaseDataSource.scheduleRecurringFetchTicketsSync();
-        mThreadAppExecutors.diskIO().execute(() -> {
-            if (isFetchNeeded()) startFetchTickets();
-        });
-    }
-
-    public LiveData<List<AvailableTicket>> getTickets() {
-        initializeData();
-        return mAvailableTicketsDao.getAllAvailableTickets();
+    public LiveData<List<MyTicket>> getTickets() {
+        return mMyTicketsDao.getMyTickets();
     }
 
     public FirestoreRecyclerOptions<AvailableTicket> getAvailableTicketsRemote() {
@@ -72,13 +53,20 @@ public class MosheyRepository {
     }
 
     /**
-     * Check Local cache before loading data
+     * Book a ticket process by adding it to local db,decrementing firestore field of available tickets and
+     * adding it to booked collection with unique ticket id
      *
-     * @return Whether a fetch is needed or not
+     * @param myTicket object with details pertaining the ticket
      */
-    private boolean isFetchNeeded() {
-//        TODO Use different criteria
-        return !(mAvailableTicketsDao.ticketAvailableCount() == 4);
+    public void bookTicket(MyTicket myTicket) {
+        mThreadAppExecutors.diskIO().execute(() -> {
+            mMyTicketsDao.insertTicket(myTicket);
+            Log.d("Booking", "Ticket Booked");
+        });
+        mThreadAppExecutors.networkIO().execute(() -> {
+            mFirebaseDataSource.bookTicket(myTicket);
+            mFirebaseDataSource.registerTicket(myTicket.getTicketId());
+//          TODO  Make payment
+        });
     }
-
 }

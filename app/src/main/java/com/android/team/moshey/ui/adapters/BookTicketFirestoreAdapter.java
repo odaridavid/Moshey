@@ -28,7 +28,6 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
      */
     public BookTicketFirestoreAdapter(@NonNull FirestoreRecyclerOptions<AvailableTicket> options, IFirestoreAdapterCallback firestoreAdapterCallback, IBookTicketCallback bookTicketCallback) {
         super(options);
@@ -38,7 +37,6 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
 
     @Override
     protected void onBindViewHolder(@NonNull BookTicketViewHolder bookTicketViewHolder, int i, @NonNull AvailableTicket availableTicket) {
-        Log.d("Adapter:", availableTicket.toString());
         bookTicketViewHolder.tvFrom.setText(availableTicket.getFrom());
         bookTicketViewHolder.tvTo.setText(availableTicket.getTo());
         bookTicketViewHolder.tvTicketsLeft.setText(String.valueOf(availableTicket.getLeft()));
