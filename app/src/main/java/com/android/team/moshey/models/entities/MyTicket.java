@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
@@ -11,7 +12,7 @@ import androidx.room.PrimaryKey;
  * On 01/04/19
  **/
 
-@Entity(tableName = "my_tickets")
+@Entity(tableName = "my_tickets", indices = {@Index(value = {"ticket_id"}, unique = true)})
 public class MyTicket implements ITicket {
 
     @PrimaryKey(autoGenerate = true)
@@ -25,7 +26,6 @@ public class MyTicket implements ITicket {
 
     @Ignore
     public MyTicket() {
-
     }
 
     public MyTicket(long _id, String ticketId, String from, String to) {

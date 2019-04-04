@@ -20,8 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * Created By blackcoder
  * On 03/04/19
  **/
-public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<AvailableTicket, BookTicketViewHolder> {
-    private IFirestoreAdapterCallback mCallback;
+public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<AvailableTicket, BookTicketFirestoreAdapter.BookTicketViewHolder> {
+    private IFirestoreAdapterCallback mFirestoreAdapterCallback;
+    private IBookTicketCallback mBookTicketCallback;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -29,9 +30,10 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
      *
      * @param options
      */
-    public BookTicketFirestoreAdapter(@NonNull FirestoreRecyclerOptions<AvailableTicket> options, IFirestoreAdapterCallback callback) {
+    public BookTicketFirestoreAdapter(@NonNull FirestoreRecyclerOptions<AvailableTicket> options, IFirestoreAdapterCallback firestoreAdapterCallback, IBookTicketCallback bookTicketCallback) {
         super(options);
-        mCallback = callback;
+        mFirestoreAdapterCallback = firestoreAdapterCallback;
+        mBookTicketCallback = bookTicketCallback;
     }
 
     @Override
@@ -58,22 +60,25 @@ public final class BookTicketFirestoreAdapter extends FirestoreRecyclerAdapter<A
     @Override
     public void onDataChanged() {
         super.onDataChanged();
-        mCallback.onAdapterDataChanged(super.getItemCount());
+        mFirestoreAdapterCallback.onAdapterDataChanged(super.getItemCount());
         notifyDataSetChanged();
     }
-}
 
-class BookTicketViewHolder extends RecyclerView.ViewHolder {
+    class BookTicketViewHolder extends RecyclerView.ViewHolder {
 
-    final TextView tvFrom, tvTo, tvTicketsLeft;
-    final Button mBtnBookTicket;
+        final TextView tvFrom, tvTo, tvTicketsLeft;
+        final Button mBtnBookTicket;
 
-    BookTicketViewHolder(@NonNull View itemView) {
-        super(itemView);
-        tvFrom = itemView.findViewById(R.id.text_view_from);
-        tvTo = itemView.findViewById(R.id.text_view_to);
-        tvTicketsLeft = itemView.findViewById(R.id.text_view_ticket_remaining);
-        mBtnBookTicket = itemView.findViewById(R.id.button_book_ticket);
+        BookTicketViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvFrom = itemView.findViewById(R.id.text_view_from);
+            tvTo = itemView.findViewById(R.id.text_view_to);
+            tvTicketsLeft = itemView.findViewById(R.id.text_view_ticket_remaining);
+            mBtnBookTicket = itemView.findViewById(R.id.button_book_ticket);
+            mBtnBookTicket.setOnClickListener(v -> mBookTicketCallback.bookTrainTicket(tvTo.getText().toString(), tvFrom.getText().toString()));
+        }
     }
 }
+
+
 

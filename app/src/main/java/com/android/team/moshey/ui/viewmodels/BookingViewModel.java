@@ -2,6 +2,7 @@ package com.android.team.moshey.ui.viewmodels;
 
 import com.android.team.moshey.models.MosheyRepository;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.models.entities.MyTicket;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.List;
@@ -38,5 +39,11 @@ public class BookingViewModel extends ViewModel {
      */
     public FirestoreRecyclerOptions<AvailableTicket> getFirestoreRecyclerOptions() {
         return mFirestoreRecyclerOptions;
+    }
+
+    public void bookTicket(MyTicket myTicket) {
+        //                TODO Make Payments
+//                TODO Decrement from firestore
+
     }
 }
