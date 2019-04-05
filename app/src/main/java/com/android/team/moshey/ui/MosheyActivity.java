@@ -83,6 +83,9 @@ public class MosheyActivity extends AppCompatActivity {
             case R.id.action_book:
                 startActivity(new Intent(MosheyActivity.this, BookingActivity.class));
                 break;
+            case R.id.action_about:
+                startActivity(new Intent(MosheyActivity.this, AboutUsActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

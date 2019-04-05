@@ -35,6 +35,7 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
+        mBookingBinding.bookingAppBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         Toolbar vToolbar = mBookingBinding.bookingAppBar;
         vToolbar.setTitle(getString(R.string.book_title));
         setSupportActionBar(vToolbar);
