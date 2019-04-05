@@ -27,12 +27,11 @@ in ```app``` directory
 ## Screenshots
 
  <details>
-
    <summary> Mobile </summary>
-
-| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/1.png)]()| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/2.png)]()| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/3.png)]()| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/4.png)]()|
-|:---:||:---:||:---:||:---:|
-| | | | |
+   
+   |[![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/1.png)]() | [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/2.png)]()| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/3.png)]()| [![Main View](https://github.com/Davidodari/Moshey/blob/master/screenshots/4.png)]()|
+   |:---:|:---:|:---:|:---:|
+   |     |      |      |     | 
 
  </details>
 
