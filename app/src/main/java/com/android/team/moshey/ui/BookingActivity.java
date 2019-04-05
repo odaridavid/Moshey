@@ -1,15 +1,14 @@
 package com.android.team.moshey.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
 import com.android.team.moshey.models.entities.MyTicket;
 import com.android.team.moshey.ui.adapters.BookTicketFirestoreAdapter;
-import com.android.team.moshey.ui.adapters.IBookTicketCallback;
-import com.android.team.moshey.ui.adapters.IFirestoreAdapterCallback;
+import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
+import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;
 import com.android.team.moshey.ui.viewmodels.BookingViewModel;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
 import com.android.team.moshey.utils.ConstantUtils;
@@ -43,16 +42,8 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
         BookingViewModelFactory factory = InjectorUtils
                 .provideDetailViewModelFactory(this.getApplicationContext());
         mBookingViewModel = ViewModelProviders.of(this, factory).get(BookingViewModel.class);
-//        observeTickets();
         setupRecyclerView();
     }
-
-//    public void observeTickets() {
-//        mBookingViewModel.getAvailableTickets().observe(this, availableTickets -> {
-//            if (availableTickets != null)
-//                setupRecyclerView(availableTickets);
-//        });
-//    }
 
     private void setupRecyclerView() {
         mBookTicketFirestoreAdapter = new BookTicketFirestoreAdapter(

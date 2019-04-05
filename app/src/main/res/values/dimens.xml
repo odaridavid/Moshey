@@ -2,4 +2,5 @@
 <resources>
     <dimen name="ticket_list_recycler_margin">8dp</dimen>
     <dimen name="my_tickets_title_margin">8dp</dimen>
+    <dimen name="no_tickets_text_size">20sp</dimen>
 </resources>

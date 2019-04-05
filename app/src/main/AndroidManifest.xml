@@ -24,18 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".models.services.MosheySyncIntentService"
-            android:exported="false" />
-
-        <service
-            android:name=".models.services.MosheyFirebaseService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>
