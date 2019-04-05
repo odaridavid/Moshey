@@ -14,6 +14,9 @@ import com.android.team.moshey.ui.adapters.MyTicketsAdapter;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModel;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModelFactory;
 import com.android.team.moshey.utils.InjectorUtils;
+import com.android.team.moshey.views.MosheyImageView;
+import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
 
@@ -22,6 +25,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.android.team.moshey.utils.ConstantUtils.MAIN_VIEW_PHOTO_URL;
 
 public class MosheyActivity extends AppCompatActivity {
 
@@ -34,10 +39,17 @@ public class MosheyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMosheyBinding vActivityMosheyBinding = DataBindingUtil.setContentView(this, R.layout.activity_moshey);
         setSupportActionBar(vActivityMosheyBinding.mosheyAppBar);
+//        if (getSupportActionBar() != null)
+//            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        CollapsingToolbarLayout vCollapsingToolbarLayout = vActivityMosheyBinding.collapsingToolbar;
+        vCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
+        vCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.white));
         mViewTicketsListRecycler = vActivityMosheyBinding.viewTicketsListRecycler;
         mTextViewNoTickets = vActivityMosheyBinding.textViewNoTickets;
         MosheyViewModelFactory vMosheyViewModelFactory = InjectorUtils.provideMosheyViewModelFactory(this);
         mMosheyViewModel = ViewModelProviders.of(this, vMosheyViewModelFactory).get(MosheyViewModel.class);
+        MosheyImageView vMosheyImageView = vActivityMosheyBinding.mosheyImageViewCustom;
+        Glide.with(MosheyActivity.this).load(MAIN_VIEW_PHOTO_URL).into(vMosheyImageView);
         observeTickets();
     }
 
