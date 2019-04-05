@@ -13,4 +13,5 @@
     <string name="tickets_unavailable">No Tickets Available</string>
     <string name="no_new_tickets">No New Tickets</string>
     <string name="no_booked_tickets">No Booked Tickets</string>
+    <string name="date">Date</string>
 </resources>

@@ -23,16 +23,27 @@ public class MyTicket implements ITicket {
     private String from;
     @ColumnInfo(name = "to")
     private String to;
+    @ColumnInfo(name = "date")
+    private String date;
 
     @Ignore
     public MyTicket() {
     }
 
-    public MyTicket(long _id, String ticketId, String from, String to) {
+    public MyTicket(long _id, String ticketId, String from, String to, String date) {
         this._id = _id;
         this.ticketId = ticketId;
         this.from = from;
         this.to = to;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public long get_id() {

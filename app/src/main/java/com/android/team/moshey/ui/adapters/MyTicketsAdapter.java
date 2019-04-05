@@ -34,11 +34,13 @@ public class MyTicketsAdapter extends RecyclerView.Adapter<MyTicketsAdapter.MyTi
 
     @Override
     public void onBindViewHolder(@NonNull MyTicketsViewHolder holder, int position) {
+
         if (mMyTickets != null) {
             MyTicket ticktet = mMyTickets.get(position);
             holder.tvFrom.setText(ticktet.getFrom());
             holder.tvTo.setText(ticktet.getTo());
             holder.tvTicketId.setText(ticktet.getTicketId());
+            holder.date.setText(ticktet.getDate());
         }
     }
 
@@ -48,13 +50,14 @@ public class MyTicketsAdapter extends RecyclerView.Adapter<MyTicketsAdapter.MyTi
     }
 
     class MyTicketsViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFrom, tvTo, tvTicketId;
+        TextView tvFrom, tvTo, tvTicketId, date;
 
         MyTicketsViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFrom = itemView.findViewById(R.id.text_view_my_from);
             tvTo = itemView.findViewById(R.id.text_view_my_to);
             tvTicketId = itemView.findViewById(R.id.text_view_ticket_id);
+            date = itemView.findViewById(R.id.text_view_ticket_date_booked);
         }
     }
 }

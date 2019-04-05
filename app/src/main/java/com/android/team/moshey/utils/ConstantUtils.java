@@ -1,5 +1,9 @@
 package com.android.team.moshey.utils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -22,5 +26,11 @@ public final class ConstantUtils {
         for (int i = 0; i < sizeOfTicketId; ++i)
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
+    }
+
+    public static String buildCurrentDateString(Calendar calendar) {
+        Date date = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return dateFormat.format(date).replace("/", "-");
     }
 }

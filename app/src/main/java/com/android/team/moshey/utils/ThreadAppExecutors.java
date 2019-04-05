@@ -19,7 +19,7 @@ public final class ThreadAppExecutors {
         this.networkIO = networkIO;
     }
 
-    static ThreadAppExecutors getInstance() {
+    public static ThreadAppExecutors getInstance() {
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = new ThreadAppExecutors(
