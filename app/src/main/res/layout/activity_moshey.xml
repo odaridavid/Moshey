@@ -52,10 +52,10 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/moshey_app_bar"
-                    app:titleTextColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
-                    app:layout_collapseMode="pin" />
+                    app:layout_collapseMode="pin"
+                    app:titleTextColor="@android:color/white" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -72,10 +72,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/my_tickets_title_margin"
+                android:labelFor="@id/view_tickets_list_recycler"
                 android:text="@string/my_tickets"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:labelFor="@id/view_tickets_list_recycler"
                 android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -84,6 +84,17 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/ticket_list_recycler_margin"
                 android:clipToPadding="false" />
+
+            <TextView
+                android:id="@+id/text_view_no_tickets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:text="@string/no_booked_tickets"
+                android:textAlignment="center"
+                android:textSize="@dimen/no_tickets_text_size"
+                android:visibility="gone" />
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

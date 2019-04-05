@@ -39,7 +39,6 @@ dependencies {
     implementation firebase.core
     implementation firebase.firestoreDb
     implementation firebase.firestoreUi
-    implementation firebase.job_dispatcher
     annotationProcessor androidx.room_compiler
     annotationProcessor androidx.lifecycle_compiler
     annotationProcessor bumptech.glide_compiler

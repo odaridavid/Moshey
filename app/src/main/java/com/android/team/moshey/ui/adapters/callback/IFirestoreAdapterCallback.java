@@ -1,4 +1,4 @@
-package com.android.team.moshey.ui.adapters;
+package com.android.team.moshey.ui.adapters.callback;
 
 /**
  * Created By blackcoder
