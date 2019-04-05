@@ -13,4 +13,9 @@
     <string name="tickets_unavailable">No Tickets Available</string>
     <string name="no_new_tickets">No New Tickets</string>
     <string name="no_booked_tickets">No Booked Tickets</string>
+    <string name="date">Date</string>
+    <string name="moshey">Moshey is a Train Booking application still under beta testing Moshey.inc 2019</string>
+    <string name="moshey_intro">Moshey is a train booking application that tailors your experience to with reliable transport booking services.</string>
+    <string name="team">Team</string>
+    <string name="more_info_soon">More Info Soon...</string>
 </resources>

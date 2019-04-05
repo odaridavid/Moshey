@@ -1,6 +1,7 @@
 package com.android.team.moshey.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.team.moshey.R;
@@ -13,6 +14,8 @@ import com.android.team.moshey.ui.viewmodels.BookingViewModel;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
 import com.android.team.moshey.utils.ConstantUtils;
 import com.android.team.moshey.utils.InjectorUtils;
+
+import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +35,7 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
+        mBookingBinding.bookingAppBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         Toolbar vToolbar = mBookingBinding.bookingAppBar;
         vToolbar.setTitle(getString(R.string.book_title));
         setSupportActionBar(vToolbar);
@@ -84,11 +88,18 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
 
     @Override
     public void bookTrainTicket(String to, String from) {
+        MyTicket vMyTicket = generateTicket(to, from);
+        mBookingViewModel.bookTicket(vMyTicket);
+    }
+
+    private MyTicket generateTicket(String to, String from) {
         String ticketID = "#".concat(ConstantUtils.generateTicketId(8));
         MyTicket vMyTicket = new MyTicket();
         vMyTicket.setTo(to);
         vMyTicket.setFrom(from);
         vMyTicket.setTicketId(ticketID);
-        mBookingViewModel.bookTicket(vMyTicket);
+        vMyTicket.setDate(ConstantUtils.buildCurrentDateString(Calendar.getInstance()));
+        Log.d("Date is", vMyTicket.getDate());
+        return vMyTicket;
     }
 }

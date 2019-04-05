@@ -12,6 +12,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.AboutUsActivity"
+            android:parentActivityName=".ui.MosheyActivity" />
+        <activity
             android:name=".ui.BookingActivity"
             android:label="Book A Ticket"
             android:parentActivityName=".ui.MosheyActivity" />

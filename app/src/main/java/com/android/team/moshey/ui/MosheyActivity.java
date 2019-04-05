@@ -1,6 +1,7 @@
 package com.android.team.moshey.ui;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,8 +15,10 @@ import com.android.team.moshey.ui.adapters.MyTicketsAdapter;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModel;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModelFactory;
 import com.android.team.moshey.utils.InjectorUtils;
+import com.android.team.moshey.utils.ThreadAppExecutors;
 import com.android.team.moshey.views.MosheyImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
@@ -29,7 +32,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.android.team.moshey.utils.ConstantUtils.MAIN_VIEW_PHOTO_URL;
 
 public class MosheyActivity extends AppCompatActivity {
-
+    // TODO Improve Interface
+//    TODO Add Timestamp To Ticket
     private MosheyViewModel mMosheyViewModel;
     private RecyclerView mViewTicketsListRecycler;
     private TextView mTextViewNoTickets;
@@ -39,8 +43,6 @@ public class MosheyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMosheyBinding vActivityMosheyBinding = DataBindingUtil.setContentView(this, R.layout.activity_moshey);
         setSupportActionBar(vActivityMosheyBinding.mosheyAppBar);
-//        if (getSupportActionBar() != null)
-//            getSupportActionBar().setDisplayShowTitleEnabled(false);
         CollapsingToolbarLayout vCollapsingToolbarLayout = vActivityMosheyBinding.collapsingToolbar;
         vCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
         vCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.white));
@@ -49,7 +51,10 @@ public class MosheyActivity extends AppCompatActivity {
         MosheyViewModelFactory vMosheyViewModelFactory = InjectorUtils.provideMosheyViewModelFactory(this);
         mMosheyViewModel = ViewModelProviders.of(this, vMosheyViewModelFactory).get(MosheyViewModel.class);
         MosheyImageView vMosheyImageView = vActivityMosheyBinding.mosheyImageViewCustom;
-        Glide.with(MosheyActivity.this).load(MAIN_VIEW_PHOTO_URL).into(vMosheyImageView);
+        ThreadAppExecutors.getInstance().diskIO().execute(() -> {
+            RequestBuilder<Drawable> vRequestBuilder = Glide.with(MosheyActivity.this).load(MAIN_VIEW_PHOTO_URL);
+            runOnUiThread(() -> vRequestBuilder.into(vMosheyImageView));
+        });
         observeTickets();
     }
 
@@ -77,6 +82,9 @@ public class MosheyActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_book:
                 startActivity(new Intent(MosheyActivity.this, BookingActivity.class));
+                break;
+            case R.id.action_about:
+                startActivity(new Intent(MosheyActivity.this, AboutUsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
