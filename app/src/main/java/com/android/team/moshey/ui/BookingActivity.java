@@ -8,12 +8,14 @@ import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
 import com.android.team.moshey.models.entities.MyTicket;
 import com.android.team.moshey.ui.adapters.BookTicketFirestoreAdapter;
-import com.android.team.moshey.ui.adapters.IBookTicketCallback;
-import com.android.team.moshey.ui.adapters.IFirestoreAdapterCallback;
+import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
+import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;
 import com.android.team.moshey.ui.viewmodels.BookingViewModel;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
 import com.android.team.moshey.utils.ConstantUtils;
 import com.android.team.moshey.utils.InjectorUtils;
+
+import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +35,7 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
+        mBookingBinding.bookingAppBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         Toolbar vToolbar = mBookingBinding.bookingAppBar;
         vToolbar.setTitle(getString(R.string.book_title));
         setSupportActionBar(vToolbar);
@@ -43,16 +46,8 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
         BookingViewModelFactory factory = InjectorUtils
                 .provideDetailViewModelFactory(this.getApplicationContext());
         mBookingViewModel = ViewModelProviders.of(this, factory).get(BookingViewModel.class);
-//        observeTickets();
         setupRecyclerView();
     }
-
-//    public void observeTickets() {
-//        mBookingViewModel.getAvailableTickets().observe(this, availableTickets -> {
-//            if (availableTickets != null)
-//                setupRecyclerView(availableTickets);
-//        });
-//    }
 
     private void setupRecyclerView() {
         mBookTicketFirestoreAdapter = new BookTicketFirestoreAdapter(
@@ -93,11 +88,18 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
 
     @Override
     public void bookTrainTicket(String to, String from) {
+        MyTicket vMyTicket = generateTicket(to, from);
+        mBookingViewModel.bookTicket(vMyTicket);
+    }
+
+    private MyTicket generateTicket(String to, String from) {
         String ticketID = "#".concat(ConstantUtils.generateTicketId(8));
         MyTicket vMyTicket = new MyTicket();
         vMyTicket.setTo(to);
         vMyTicket.setFrom(from);
         vMyTicket.setTicketId(ticketID);
-        mBookingViewModel.bookTicket(vMyTicket);
+        vMyTicket.setDate(ConstantUtils.buildCurrentDateString(Calendar.getInstance()));
+        Log.d("Date is", vMyTicket.getDate());
+        return vMyTicket;
     }
 }

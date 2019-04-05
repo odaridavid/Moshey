@@ -1,7 +1,6 @@
 package com.android.team.moshey.ui.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import com.android.team.moshey.R;
 import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
+import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 

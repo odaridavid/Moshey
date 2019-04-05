@@ -6,6 +6,7 @@ import com.android.team.moshey.models.MosheyRepository;
 import com.android.team.moshey.models.db.TicketsDatabase;
 import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.ui.viewmodels.BookingViewModelFactory;
+import com.android.team.moshey.ui.viewmodels.MosheyViewModelFactory;
 
 /**
  * Created By blackcoder
@@ -24,12 +25,15 @@ public class InjectorUtils {
         return MosheyRepository.getInstance(database.mTicketsDao(), vFirebaseDataSource, executors);
     }
 
-    /**
-     * Links repository with view model to listen and observe for changes
-     */
+
     public static BookingViewModelFactory provideDetailViewModelFactory(Context context) {
         MosheyRepository repository = provideRepository(context.getApplicationContext());
         return new BookingViewModelFactory(repository);
+    }
+
+    public static MosheyViewModelFactory provideMosheyViewModelFactory(Context context) {
+        MosheyRepository repository = provideRepository(context.getApplicationContext());
+        return new MosheyViewModelFactory(repository);
     }
 
 }

@@ -84,6 +84,7 @@ public class FirebaseDataSource {
         Map<String, String> ticketPayload = new HashMap<String, String>() {
             {
                 put("ticket_id", myTicket.getTicketId());
+                put("timestamp",myTicket.getDate());
             }
         };
         mFirebaseFirestoreDb

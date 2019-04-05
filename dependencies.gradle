@@ -30,8 +30,6 @@ ext {
     firebase = [
             'core'          : 'com.google.firebase:firebase-core:16.0.6',
             'firestoreDb'   : "com.google.firebase:firebase-firestore:$firestoreDb",
-            'firestoreUi'   : "com.firebaseui:firebase-ui-firestore:$firestoreUi",
-            'job_dispatcher': 'com.firebase:firebase-jobdispatcher:0.8.6'
-
+            'firestoreUi'   : "com.firebaseui:firebase-ui-firestore:$firestoreUi"
     ]
 }
