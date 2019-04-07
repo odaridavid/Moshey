@@ -40,3 +40,4 @@ in ```app``` directory
 
  </details>
 
+Logo Design and Artwork by [zularizal](https://github.com/zularizal)
