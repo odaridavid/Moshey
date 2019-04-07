@@ -1,4 +1,9 @@
 # Moshey
+
+<h1 align=center>
+<img src="logo/horizontal.png" width=50%>
+</h1>
+
 A train booking app where users can get to book s ticket based on destination points and make payments for tickets
 The Project has been built using Androidx,Databinding,MVVM architecture,Android Jetpack Components and Firebase.
 
