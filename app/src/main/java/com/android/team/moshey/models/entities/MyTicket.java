@@ -7,6 +7,8 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 /**
  * Created By blackcoder
  * On 01/04/19
@@ -91,5 +93,22 @@ public class MyTicket implements ITicket {
                 ", from='" + from + '\'' +
                 ", to='" + to + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object vo) {
+        if (this == vo) return true;
+        if (vo == null || getClass() != vo.getClass()) return false;
+        MyTicket vvMyTicket = (MyTicket) vo;
+        return get_id() == vvMyTicket.get_id() &&
+                getTicketId().equals(vvMyTicket.getTicketId()) &&
+                getFrom().equals(vvMyTicket.getFrom()) &&
+                getTo().equals(vvMyTicket.getTo()) &&
+                getDate().equals(vvMyTicket.getDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(get_id(), getTicketId(), getFrom(), getTo(), getDate());
     }
 }
