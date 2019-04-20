@@ -2,8 +2,7 @@ ext {
     appVersion = 1
     versionName = "0.0.1-BETA"
     minSdkVersionNumber = 22
-    compileSdkVersionNumber = 28
-    targetSdkVersionNumber = 28
+    SdkVersionNumber = 28
     room_version = "2.1.0-alpha04"
     lifecycle_version = '2.0.0'
 
@@ -21,23 +20,32 @@ ext {
             'lifecycle_compiler'  : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
             'lifecycle_runtime'   : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     ]
+
     bumptech = [
             'glide'         : 'com.github.bumptech.glide:glide:4.9.0',
             'glide_compiler': 'com.github.bumptech.glide:compiler:4.9.0'
     ]
+
     firestoreDb = '18.1.0'
     firestoreUi = '4.3.1'
     firebase = [
-            'core'          : 'com.google.firebase:firebase-core:16.0.6',
-            'firestoreDb'   : "com.google.firebase:firebase-firestore:$firestoreDb",
-            'firestoreUi'   : "com.firebaseui:firebase-ui-firestore:$firestoreUi"
+            'core'       : 'com.google.firebase:firebase-core:16.0.6',
+            'firestoreDb': "com.google.firebase:firebase-firestore:$firestoreDb",
+            'firestoreUi': "com.firebaseui:firebase-ui-firestore:$firestoreUi"
     ]
+
     retrofit_version = '2.5.0'
     okhttp_version = '3.14.1'
     squareup = [
-            retrofit               : "com.squareup.retrofit2:retrofit:$retrofit_version",
-            retrofit_gson_converter: "com.squareup.retrofit2:converter-gson:$retrofit_version",
-            okhttp_logging         : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
-            okhttp                 : "com.squareup.okhttp3:okhttp:$okhttp_version"
+            retrofit                 : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            'retrofit_gson_converter': "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            'okhttp_logging'         : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
+            'okhttp'                 : "com.squareup.okhttp3:okhttp:$okhttp_version"
+    ]
+
+    leak_canary = '1.6.3'
+    square = [
+            leak_canary_debug  : "com.squareup.leakcanary:leakcanary-android:$leak_canary",
+            leak_canary_release: "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary"
     ]
 }
