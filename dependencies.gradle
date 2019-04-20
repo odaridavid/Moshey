@@ -32,4 +32,12 @@ ext {
             'firestoreDb'   : "com.google.firebase:firebase-firestore:$firestoreDb",
             'firestoreUi'   : "com.firebaseui:firebase-ui-firestore:$firestoreUi"
     ]
+    retrofit_version = '2.5.0'
+    okhttp_version = '3.14.1'
+    squareup = [
+            retrofit               : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            retrofit_gson_converter: "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            okhttp_logging         : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
+            okhttp                 : "com.squareup.okhttp3:okhttp:$okhttp_version"
+    ]
 }
