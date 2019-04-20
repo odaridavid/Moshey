@@ -15,6 +15,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug{
+            buildConfigField("String", "APP_KEY", "\"${project.hasProperty("MOSHEY_APP_KEY") ? MOSHEY_APP_KEY : System.getenv("MOSHEY_APP_KEY")}\"")
+            buildConfigField("String", "APP_SECRET", "\"${project.hasProperty("MOSHEY_APP_SECRET") ? MOSHEY_APP_SECRET : System.getenv("MOSHEY_APP_SECRET")}\"")
+        }
     }
     dataBinding {
         enabled true
