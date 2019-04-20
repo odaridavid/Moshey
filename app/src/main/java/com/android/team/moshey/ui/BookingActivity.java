@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 import com.android.team.moshey.ui.adapters.BookTicketFirestoreAdapter;
 import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
 import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;

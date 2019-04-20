@@ -1,4 +1,4 @@
-package com.android.team.moshey.models.entities;
+package com.android.team.moshey.models.entities.tickets;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

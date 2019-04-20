@@ -1,4 +1,4 @@
-package com.android.team.moshey.models.entities;
+package com.android.team.moshey.models.entities.tickets;
 
 /**
  * Created By blackcoder

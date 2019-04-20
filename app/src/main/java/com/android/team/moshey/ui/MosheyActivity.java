@@ -8,9 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityMosheyBinding;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 import com.android.team.moshey.ui.adapters.MyTicketsAdapter;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModel;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModelFactory;
@@ -23,17 +29,10 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import static com.android.team.moshey.utils.ConstantUtils.MAIN_VIEW_PHOTO_URL;
 
 public class MosheyActivity extends AppCompatActivity {
-    // TODO Improve Interface
-//    TODO Add Timestamp To Ticket
+
     private MosheyViewModel mMosheyViewModel;
     private RecyclerView mViewTicketsListRecycler;
     private TextView mTextViewNoTickets;
@@ -41,6 +40,7 @@ public class MosheyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        testMpesaToken();
         ActivityMosheyBinding vActivityMosheyBinding = DataBindingUtil.setContentView(this, R.layout.activity_moshey);
         setSupportActionBar(vActivityMosheyBinding.mosheyAppBar);
         CollapsingToolbarLayout vCollapsingToolbarLayout = vActivityMosheyBinding.collapsingToolbar;
@@ -95,4 +95,21 @@ public class MosheyActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+//    public void testMpesaToken() {
+//        MpesaService vMpesaService = NetworkAdapter.getRetrofitInstance().create(MpesaService.class);
+//        vMpesaService
+//                .getAuthToken("Basic " + ConstantUtils.getCredentials())
+//                .enqueue(new Callback<AuthResponse>() {
+//                    @Override
+//                    public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
+//                        Log.d("Mpesa Response ", response.body().toString());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<AuthResponse> call, Throwable t) {
+//                        Log.e("Mpesa Error ", t.getMessage());
+//                    }
+//                });
+//    }
 }

@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.team.moshey.R;
-import com.android.team.moshey.models.entities.AvailableTicket;
+import com.android.team.moshey.models.entities.tickets.AvailableTicket;
 import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
 import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
