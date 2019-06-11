@@ -1,7 +1,7 @@
 package com.android.team.moshey.ui.viewmodels;
 
 import com.android.team.moshey.models.MosheyRepository;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 
 import java.util.List;
 

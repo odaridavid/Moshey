@@ -8,8 +8,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ticket_list_recycler_margin"
-        android:background="@android:color/white"
+        android:layout_margin="@dimen/normal_margin"
+        android:background="?attr/colorSurface"
         android:minHeight="120dp"
         app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
             <TextView
                 android:id="@+id/text_view_my_from"
                 style="@style/Moshey.Subtext"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/text_view_from_title"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_from_title"
                 tools:text="Nairobi" />
 
@@ -51,24 +51,24 @@
             <TextView
                 android:id="@+id/text_view_ticket_id_title"
                 style="@style/Moshey.Title"
-                android:layout_margin="4dp"
                 android:text="@string/ticked_id"
+                android:layout_marginTop="16dp"
                 android:textSize="12sp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/text_view_my_from"
                 app:layout_constraintTop_toBottomOf="@id/text_view_my_from" />
 
             <TextView
                 android:id="@+id/text_view_ticket_id"
                 style="@style/Moshey.Subtext"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/text_view_ticket_id_title"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_id_title"
                 tools:text="#3ER456" />
 
             <TextView
                 android:id="@+id/text_view_ticket_date_booked"
                 style="@style/Moshey.Subtext"
-                android:textSize="12sp"
+                android:textSize="@dimen/normal_text"
                 android:textColor="@android:color/darker_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

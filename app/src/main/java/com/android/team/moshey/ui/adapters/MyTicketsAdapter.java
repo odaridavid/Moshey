@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.team.moshey.R;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 
 import java.util.List;
 

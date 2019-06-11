@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 2. Create Dark Mode Color Palette-->
+    <color name="color_primary">#424242</color>
+    <color name="color_primary_variant">#6d6d6d</color>
+    <color name="color_secondary">#ffff56</color>
+    <color name="color_secondary_variant">#ffff8a</color>
+
+    <color name="color_background">#202010</color>
+    <color name="color_surface">#121212</color>
+    <color name="color_error">#cf6679</color>
+
+    <color name="color_on_primary">#ffffff</color>
+    <color name="color_on_secondary">#202010</color>
+    <color name="color_on_background">#ffffff</color>
+    <color name="color_on_surface">#9e9e9e</color>
+    <color name="color_on_error">#202010</color>
+</resources>

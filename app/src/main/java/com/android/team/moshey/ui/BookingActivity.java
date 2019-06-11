@@ -4,9 +4,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityBookingBinding;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 import com.android.team.moshey.ui.adapters.BookTicketFirestoreAdapter;
 import com.android.team.moshey.ui.adapters.callback.IBookTicketCallback;
 import com.android.team.moshey.ui.adapters.callback.IFirestoreAdapterCallback;
@@ -16,13 +23,6 @@ import com.android.team.moshey.utils.ConstantUtils;
 import com.android.team.moshey.utils.InjectorUtils;
 
 import java.util.Calendar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class BookingActivity extends AppCompatActivity implements IFirestoreAdapterCallback, IBookTicketCallback {
 
@@ -34,6 +34,9 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        TODO 8. Set Mode in Activity - offside recreates activity use for one off overrides
+//        getDelegate().setLocalNightMode(
+//                AppCompatDelegate.MODE_NIGHT_YES);
         mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
         mBookingBinding.bookingAppBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         Toolbar vToolbar = mBookingBinding.bookingAppBar;
@@ -76,11 +79,10 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     @Override
     public void onAdapterDataChanged(int itemCount) {
         if (!(itemCount > 0)) {
-            Toast
-                    .makeText(
-                            BookingActivity.this,
-                            getString(R.string.no_new_tickets),
-                            Toast.LENGTH_LONG)
+            Toast.makeText(
+                    BookingActivity.this,
+                    getString(R.string.no_new_tickets),
+                    Toast.LENGTH_LONG)
                     .show();
         }
         mRecyclerView.setAdapter(mBookTicketFirestoreAdapter);

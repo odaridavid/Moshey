@@ -3,8 +3,8 @@ package com.android.team.moshey.models.db;
 import android.content.Context;
 
 import com.android.team.moshey.models.db.dao.MyTicketsDao;
-import com.android.team.moshey.models.entities.AvailableTicket;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.AvailableTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 
 import androidx.room.Database;
 import androidx.room.Room;

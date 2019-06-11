@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion compileSdkVersionNumber
+    compileSdkVersion SdkVersionNumber
     defaultConfig {
         applicationId "com.android.team.moshey"
         minSdkVersion minSdkVersionNumber
-        targetSdkVersion targetSdkVersionNumber
-        versionCode appVersion
-        versionName versionName
+        targetSdkVersion SdkVersionNumber
+        versionCode 210000100
+        versionName "0.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            buildConfigField("String", "APP_KEY", "\"${project.hasProperty("MOSHEY_APP_KEY") ? MOSHEY_APP_KEY : System.getenv("MOSHEY_APP_KEY")}\"")
+            buildConfigField("String", "APP_SECRET", "\"${project.hasProperty("MOSHEY_APP_SECRET") ? MOSHEY_APP_SECRET : System.getenv("MOSHEY_APP_SECRET")}\"")
         }
     }
     dataBinding {
@@ -39,8 +43,15 @@ dependencies {
     implementation firebase.core
     implementation firebase.firestoreDb
     implementation firebase.firestoreUi
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation (squareup.retrofit) {
+        exclude module: 'okhttp'
+    }
+    implementation squareup.retrofit_gson_converter
+    implementation squareup.okhttp
+    implementation squareup.okhttp_logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    debugImplementation square.leak_canary_debug
+    releaseImplementation square.leak_canary_release
     annotationProcessor androidx.room_compiler
     annotationProcessor androidx.lifecycle_compiler
     annotationProcessor bumptech.glide_compiler

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Moshey.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
+
+    </style>
+
+    <style name="Moshey.Title" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+</resources>
