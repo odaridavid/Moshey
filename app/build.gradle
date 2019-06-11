@@ -6,8 +6,8 @@ android {
         applicationId "com.android.team.moshey"
         minSdkVersion minSdkVersionNumber
         targetSdkVersion SdkVersionNumber
-        versionCode appVersion
-        versionName versionName
+        versionCode 210000100
+        versionName "0.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -49,6 +49,7 @@ dependencies {
     implementation squareup.retrofit_gson_converter
     implementation squareup.okhttp
     implementation squareup.okhttp_logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
     debugImplementation square.leak_canary_debug
     releaseImplementation square.leak_canary_release
     annotationProcessor androidx.room_compiler

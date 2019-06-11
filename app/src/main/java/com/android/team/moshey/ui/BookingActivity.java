@@ -34,6 +34,9 @@ public class BookingActivity extends AppCompatActivity implements IFirestoreAdap
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        TODO 8. Set Mode in Activity - offside recreates activity use for one off overrides
+//        getDelegate().setLocalNightMode(
+//                AppCompatDelegate.MODE_NIGHT_YES);
         mBookingBinding = DataBindingUtil.setContentView(this, R.layout.activity_booking);
         mBookingBinding.bookingAppBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         Toolbar vToolbar = mBookingBinding.bookingAppBar;

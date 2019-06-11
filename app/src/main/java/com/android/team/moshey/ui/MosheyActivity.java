@@ -3,13 +3,11 @@ package com.android.team.moshey.ui;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,14 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.team.moshey.R;
 import com.android.team.moshey.databinding.ActivityMosheyBinding;
-import com.android.team.moshey.models.entities.mpesa.AuthResponse;
 import com.android.team.moshey.models.entities.tickets.MyTicket;
-import com.android.team.moshey.network.MpesaService;
-import com.android.team.moshey.network.NetworkAdapter;
 import com.android.team.moshey.ui.adapters.MyTicketsAdapter;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModel;
 import com.android.team.moshey.ui.viewmodels.MosheyViewModelFactory;
-import com.android.team.moshey.utils.ConstantUtils;
 import com.android.team.moshey.utils.InjectorUtils;
 import com.android.team.moshey.utils.ThreadAppExecutors;
 import com.android.team.moshey.views.MosheyImageView;
@@ -34,10 +28,6 @@ import com.bumptech.glide.RequestBuilder;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.android.team.moshey.utils.ConstantUtils.MAIN_VIEW_PHOTO_URL;
 
@@ -50,12 +40,8 @@ public class MosheyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        testMpesaToken();
         ActivityMosheyBinding vActivityMosheyBinding = DataBindingUtil.setContentView(this, R.layout.activity_moshey);
         setSupportActionBar(vActivityMosheyBinding.mosheyAppBar);
-        CollapsingToolbarLayout vCollapsingToolbarLayout = vActivityMosheyBinding.collapsingToolbar;
-        vCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
-        vCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.white));
         mViewTicketsListRecycler = vActivityMosheyBinding.viewTicketsListRecycler;
         mTextViewNoTickets = vActivityMosheyBinding.textViewNoTickets;
         MosheyViewModelFactory vMosheyViewModelFactory = InjectorUtils.provideMosheyViewModelFactory(this);
@@ -106,20 +92,4 @@ public class MosheyActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void testMpesaToken() {
-        MpesaService vMpesaService = NetworkAdapter.getRetrofitInstance().create(MpesaService.class);
-        vMpesaService
-                .getAuthToken("Basic " + ConstantUtils.getCredentials())
-                .enqueue(new Callback<AuthResponse>() {
-                    @Override
-                    public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
-                        Log.d("Mpesa Response", response.body().toString());
-                    }
-
-                    @Override
-                    public void onFailure(Call<AuthResponse> call, Throwable t) {
-                        Log.e("Mpesa Error", t.getMessage());
-                    }
-                });
-    }
 }

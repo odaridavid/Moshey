@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 5.Create Dark Theme App Theme ,Used when in context of dark theme-->
+    <style name="MosheyTheme.DayNight" parent="Theme.MaterialComponents.NoActionBar">
+
+    </style>
+</resources>
