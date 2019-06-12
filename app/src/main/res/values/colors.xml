@@ -6,10 +6,10 @@
     <!--<color name="colorAccent">#FFEA00</color>-->
 
     <!--TODO 5. Update Color Resource to use material components color predefined theme attributes-->
-    <color name="color_primary">#6200ee</color>
-    <color name="color_primary_variant">#3700b3</color>
-    <color name="color_secondary">#03dac6</color>
-    <color name="color_secondary_variant">#018786</color>
+    <color name="color_primary">#E91E63</color>
+    <color name="color_primary_variant">#C2185B</color>
+    <color name="color_secondary">#FFEA00</color>
+    <color name="color_secondary_variant">#ffff56</color>
 
     <!--colorBackground appears behind scrollable content and is used for the default window-->
     <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
