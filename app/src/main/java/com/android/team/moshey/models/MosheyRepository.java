@@ -3,8 +3,8 @@ package com.android.team.moshey.models;
 import android.util.Log;
 
 import com.android.team.moshey.models.db.dao.MyTicketsDao;
-import com.android.team.moshey.models.entities.AvailableTicket;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.AvailableTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 import com.android.team.moshey.models.network.FirebaseDataSource;
 import com.android.team.moshey.utils.ThreadAppExecutors;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;

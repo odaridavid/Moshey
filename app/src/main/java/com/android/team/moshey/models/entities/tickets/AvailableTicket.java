@@ -1,4 +1,4 @@
-package com.android.team.moshey.models.entities;
+package com.android.team.moshey.models.entities.tickets;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -7,44 +7,34 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 /**
  * Created By blackcoder
- * On 01/04/19
+ * On 02/04/19
  **/
-
-@Entity(tableName = "my_tickets", indices = {@Index(value = {"ticket_id"}, unique = true)})
-public class MyTicket implements ITicket {
-
+@Entity(tableName = "available_tickets", indices = {@Index(value = {"from", "to"}, unique = true)})
+public class AvailableTicket implements ITicket {
     @PrimaryKey(autoGenerate = true)
     private long _id;
-    @ColumnInfo(name = "ticket_id")
-    private String ticketId;
     @ColumnInfo(name = "from")
     private String from;
     @ColumnInfo(name = "to")
     private String to;
-    @ColumnInfo(name = "date")
-    private String date;
+    @ColumnInfo(name = "left")
+    private int left;
 
     @Ignore
-    public MyTicket() {
+    public AvailableTicket() {
     }
 
-    public MyTicket(long _id, String ticketId, String from, String to, String date) {
+    public AvailableTicket(long _id, String from, String to, int left) {
         this._id = _id;
-        this.ticketId = ticketId;
         this.from = from;
         this.to = to;
-        this.date = date;
+        this.left = left;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public long get_id() {
         return _id;
@@ -52,14 +42,6 @@ public class MyTicket implements ITicket {
 
     public void set_id(long _id) {
         this._id = _id;
-    }
-
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(String ticketId) {
-        this.ticketId = ticketId;
     }
 
     @Override
@@ -82,14 +64,34 @@ public class MyTicket implements ITicket {
         this.to = to;
     }
 
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
+    }
 
     @NonNull
     @Override
     public String toString() {
-        return "MyTicket{" +
-                "ticketId='" + ticketId + '\'' +
-                ", from='" + from + '\'' +
+        return "AvailableTicket{" +
+                "from='" + from + '\'' +
                 ", to='" + to + '\'' +
+                ", left=" + left +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object vo) {
+        if (this == vo) return true;
+        if (vo == null || getClass() != vo.getClass()) return false;
+        AvailableTicket vthat = (AvailableTicket) vo;
+        return get_id() == vthat.get_id();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(get_id());
     }
 }

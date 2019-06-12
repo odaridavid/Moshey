@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ticket_list_recycler_margin">8dp</dimen>
-    <dimen name="my_tickets_title_margin">8dp</dimen>
-    <dimen name="no_tickets_text_size">20sp</dimen>
+    <dimen name="normal_margin">8dp</dimen>
+    <dimen name="label_placeholder_no_tickets_text_size">20sp</dimen>
+    <dimen name="title_text_size">24sp</dimen>
+    <dimen name="sub_title_text_size">18sp</dimen>
+    <dimen name="train_image_view_height">250dp</dimen>
+    <dimen name="normal_text">14sp</dimen>
 </resources>

@@ -1,5 +1,10 @@
 package com.android.team.moshey.utils;
 
+import android.util.Base64;
+
+import com.android.team.moshey.BuildConfig;
+
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,6 +16,8 @@ import java.util.Random;
  * On 02/04/19
  **/
 public final class ConstantUtils {
+
+    public final static String MPESA_BASE_URL = "https://sandbox.safaricom.co.ke/oauth/v1/";
     public static final String TICKETS_DATABASE_LABEL = "tickets";
     public static final String COLLECTION_TICKETS = "tickets";
     public static final String COLLECTION_BOUGHT = "bought";
@@ -32,5 +39,11 @@ public final class ConstantUtils {
         Date date = calendar.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return dateFormat.format(date).replace("/", "-");
+    }
+
+    public static String getCredentials() {
+        String appKeySecret = BuildConfig.APP_KEY + ":" + BuildConfig.APP_SECRET;
+        byte[] bytes = appKeySecret.getBytes(StandardCharsets.ISO_8859_1);
+        return Base64.encodeToString(bytes, Base64.NO_WRAP);
     }
 }

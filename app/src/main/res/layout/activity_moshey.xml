@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
+                app:contentScrim="?colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <FrameLayout
@@ -35,7 +35,7 @@
                         android:scaleType="centerCrop" />
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="@dimen/train_image_view_height"
                         android:background="@drawable/moshey_image_view_scrim"
                         />
                 </FrameLayout>
@@ -44,6 +44,7 @@
                     android:id="@+id/moshey_app_bar"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
+                    app:titleTextColor="?attr/colorOnSecondary"
                     app:layout_collapseMode="pin" />
 
 
@@ -62,18 +63,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/my_tickets_title_margin"
+                android:layout_margin="@dimen/normal_margin"
                 android:labelFor="@id/view_tickets_list_recycler"
                 android:text="@string/my_tickets"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textSize="20sp" />
+                android:textSize="@dimen/label_placeholder_no_tickets_text_size" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view_tickets_list_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/ticket_list_recycler_margin"
+                android:layout_margin="@dimen/normal_margin"
                 android:clipToPadding="false" />
 
             <TextView
@@ -84,7 +85,7 @@
                 android:layout_margin="8dp"
                 android:text="@string/no_booked_tickets"
                 android:textAlignment="center"
-                android:textSize="@dimen/no_tickets_text_size"
+                android:textSize="@dimen/label_placeholder_no_tickets_text_size"
                 android:visibility="gone" />
         </LinearLayout>
 

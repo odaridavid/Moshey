@@ -2,8 +2,8 @@ package com.android.team.moshey.models.network;
 
 import android.util.Log;
 
-import com.android.team.moshey.models.entities.AvailableTicket;
-import com.android.team.moshey.models.entities.MyTicket;
+import com.android.team.moshey.models.entities.tickets.AvailableTicket;
+import com.android.team.moshey.models.entities.tickets.MyTicket;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
